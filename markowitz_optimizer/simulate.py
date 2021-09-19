@@ -146,7 +146,7 @@ def optimize():
             'Max Sharpe Ratio':tmp[2],
             'Logged Annualized Expected Return':f'{ tmp[0]*100 }%',
             'Unlogged Annualized Expected Return':f'{ (math.e**tmp[0] - 1)*100 }%',
-            'Annualized Portfolio Variance':f'{ tmp[1]*100 }%',
+            'Annualized Portfolio Variance':tmp[1]*100,
             }
     return res
 
