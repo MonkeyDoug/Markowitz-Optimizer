@@ -46,9 +46,6 @@ if not os.path.exists(asset_path):
     from generate import generate
     generate()
 
-with open(os.path.join(asset_path,'obv_map.pickle'),'rb') as f:
-    obv = pickle.load(f)
-    
 with open(os.path.join(asset_path,'yf_map.pickle'),'rb') as f:
     yf = pickle.load(f)
 
