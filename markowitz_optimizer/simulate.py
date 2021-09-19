@@ -35,24 +35,25 @@ def simulate(n_sim):
     vol_per_int_arr = np.zeros(n_ports)
     weights = np.zeros((n_ports,n_weights))
     sharpe_arr = np.zeros(n_ports)
-    bar = c1.progress(0)
-    with st.spinner('Simulating Portfolios...'):
-        for x in range(n_ports):
-            t_weight = np.array(np.random.random(n_weights))
-            t_weight = t_weight/np.sum(t_weight)
+    with c1:
+        bar = st.progress(0)
+        with st.spinner('Simulating Portfolios...'):
+            for x in range(n_ports):
+                t_weight = np.array(np.random.random(n_weights))
+                t_weight = t_weight/np.sum(t_weight)
 
-            weights[x,:] = t_weight
+                weights[x,:] = t_weight
 
-            ret_arr[x] = np.sum( returns.mean() * t_weight * sim_scale )
+                ret_arr[x] = np.sum( returns.mean() * t_weight * sim_scale )
 
-            ret_per_int_arr[x] = np.sum( returns.mean() * t_weight)
+                ret_per_int_arr[x] = np.sum( returns.mean() * t_weight)
 
-            vol_arr[x] = np.sqrt( np.dot(t_weight.T, np.dot(returns.cov()*sim_scale,t_weight)) )
+                vol_arr[x] = np.sqrt( np.dot(t_weight.T, np.dot(returns.cov()*sim_scale,t_weight)) )
 
-            vol_per_int_arr[x]  = np.sqrt( np.dot(t_weight.T, np.dot(returns.cov(),t_weight)) )
+                vol_per_int_arr[x]  = np.sqrt( np.dot(t_weight.T, np.dot(returns.cov(),t_weight)) )
 
-            sharpe_arr[x] = ret_arr[x]/vol_arr[x]
-            bar.progress(((x+1)/n_ports))
+                sharpe_arr[x] = ret_arr[x]/vol_arr[x]
+                bar.progress(((x+1)/n_ports))
 
     index = sharpe_arr.argmax()
 
