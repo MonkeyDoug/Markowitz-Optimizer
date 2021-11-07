@@ -67,7 +67,7 @@ def generate():
 
     if not os.path.isdir(asset_path):
         os.mkdir(asset_path)
-        
+
     with open(os.path.join(asset_path,'yf_map.pickle'),'wb') as f:
         pickle.dump(yf,f)
 

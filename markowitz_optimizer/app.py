@@ -8,6 +8,12 @@ from clean import clean
 from simulate import run
 
 st.set_page_config(layout="wide")
+
+st.markdown("""
+    # Portfolio Optimization App
+    This app takes tickers as inputs and produces the optimal allocation of the given stocks based on either simulations or Sequential Least Squares Programming
+    """)
+
 c1,c2 = st.columns(( 2,2 ))
 
 footer="""<style>
